@@ -34,7 +34,7 @@ int main(){
 	if (isFileExistsAccess("/tmp/gitpkg/configure"))
         {
             printf("\npackage has configure file\n");
-	    system("cd /tmp/gitpkg && echo $(pwd) && /tmp/gitpkg/configure && make && make install && rm -r /tmp/gitpkg");
+	    system("cd /tmp/gitpkg && echo $(pwd) && /tmp/gitpkg/configure && make && make install && rm -r /tmp/gitpkg/*");
 	    return 0;
 
         }
@@ -46,7 +46,7 @@ int main(){
         else if (isFileExistsAccess("/tmp/gitpkg/meson.build"))
         {
             printf("\npackage has cmake file\n");
-            system("cd /tmp/gitpkg && echo $(pwd) && mkdir build && meson build && cd build/ && meson install && rm -r /tmp/gitpkg");
+            system("cd /tmp/gitpkg && echo $(pwd) && mkdir build && meson build && cd build/ && meson install && rm -r /tmp/gitpkg/*");
         }
 
 
