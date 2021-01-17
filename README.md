@@ -8,5 +8,3 @@ a package manager for github repos
 <h2>Removal</h2>
   chmod +x remove.sh<br>
   ./remove.sh
-<h2>WARNING</h2>
-The code is in early stages, where you are originally cd'd is where build files are installed. UPDATE regarding issue: issue may be fixed.
