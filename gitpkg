@@ -1,3 +1,4 @@
 #!/bin/bash
 cd /tmp/gitpkg
+sudo rm -r /tmp/gitpkg/*
 sudo /usr/bin/.gitpkg/gitpkg_run
