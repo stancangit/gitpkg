@@ -41,7 +41,7 @@ int main(){
 	else if (isFileExistsAccess("/tmp/gitpkg/CMakeLists.txt"))
 	{
             printf("\npackage has cmake file\n");
-            system("cd /tmp/gitpkg && echo $(pwd) && cmake . && make && make install && rm -r /tmp/gitpkg");
+            system("cd /tmp/gitpkg && echo $(pwd) && cmake . && make && make install && rm -r /tmp/gitpkg/*");
 	}
         else if (isFileExistsAccess("/tmp/gitpkg/meson.build"))
         {
