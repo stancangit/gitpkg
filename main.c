@@ -27,11 +27,19 @@ int main(){
 	printf("%s", command);
 	system(command);
 	/*all code regarding getting from github here*/
+	
 	if (isFileExistsAccess("/tmp/gitpkg"))
         {
             printf("\nrepo was copied correctly\n");
         }
-	if (isFileExistsAccess("/tmp/gitpkg/configure"))
+	if (isFileExistsAccess("/tmp/gitpkg/install.sh"))
+        {
+            printf("\npackage has install script\n");
+	    system("cd /tmp/gitpkg && echo $(pwd) && chmod +x install.sh && /tmp/gitpkg/install.sh && rm -r /tmp/gitpkg/*");
+	    return 0;
+
+        }
+	else if (isFileExistsAccess("/tmp/gitpkg/configure"))
         {
             printf("\npackage has configure file\n");
 	    system("cd /tmp/gitpkg && echo $(pwd) && /tmp/gitpkg/configure && make && make install && rm -r /tmp/gitpkg/*");
@@ -42,11 +50,13 @@ int main(){
 	{
             printf("\npackage has cmake file\n");
             system("cd /tmp/gitpkg && echo $(pwd) && cmake . && make && make install && rm -r /tmp/gitpkg/*");
+	    return 0;
 	}
         else if (isFileExistsAccess("/tmp/gitpkg/meson.build"))
         {
             printf("\npackage has cmake file\n");
             system("cd /tmp/gitpkg && echo $(pwd) && mkdir build && meson build && cd build/ && meson install && rm -r /tmp/gitpkg/*");
+	    return 0;
         }
 
 
