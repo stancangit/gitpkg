@@ -35,30 +35,30 @@ int main(){
 	if (isFileExistsAccess("/tmp/gitpkg/install.sh"))
         {
             printf("\npackage has install script\n");
-	    system("cd /tmp/gitpkg && echo $(pwd) && chmod +x install.sh && /tmp/gitpkg/install.sh && rm -r /tmp/gitpkg/*");
+	    system("cd /tmp/gitpkg && echo $(pwd) && chmod +x install.sh && /tmp/gitpkg/install.sh");
 	    return 0;
 
         }
 	else if (isFileExistsAccess("/tmp/gitpkg/configure"))
         {
             printf("\npackage has configure file\n");
-	    system("cd /tmp/gitpkg && echo $(pwd) && /tmp/gitpkg/configure && make && make install && rm -r /tmp/gitpkg/*");
+	    system("cd /tmp/gitpkg && echo $(pwd) && /tmp/gitpkg/configure && make && make install");
 	    return 0;
 
         }
 	else if (isFileExistsAccess("/tmp/gitpkg/CMakeLists.txt"))
 	{
             printf("\npackage has cmake file\n");
-            system("cd /tmp/gitpkg && echo $(pwd) && cmake . && make && make install && rm -r /tmp/gitpkg/*");
+            system("cd /tmp/gitpkg && echo $(pwd) && cmake . && make && make install");
 	    return 0;
 	}
         else if (isFileExistsAccess("/tmp/gitpkg/meson.build"))
         {
             printf("\npackage has cmake file\n");
-            system("cd /tmp/gitpkg && echo $(pwd) && mkdir build && meson build && cd build/ && meson install && rm -r /tmp/gitpkg/*");
+            system("cd /tmp/gitpkg && echo $(pwd) && mkdir build && meson build && cd build/ && meson install");
 	    return 0;
         }
-
+	else {printf("\nCouldn't find build file, check /tmp/gitpkg and manually compile\n"); return 1;}
 
 
 }
