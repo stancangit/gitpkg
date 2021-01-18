@@ -24,7 +24,7 @@ int main(){
 	printf ("now enter the username of the owner\n");
 	scanf ("%s", ownername);
 	sprintf(command, "git clone https://github.com/%s/%s /tmp/gitpkg", ownername, reponame);
-	printf("%s", command);
+	printf("Running: %s", command);
 	system(command);
 	/*all code regarding getting from github here*/
 	
@@ -35,6 +35,7 @@ int main(){
 	if (isFileExistsAccess("/tmp/gitpkg/install.sh"))
         {
             printf("\npackage has install script\n");
+	    printf("Running: cd /tmp/gitpkg && echo $(pwd) && chmod +x install.sh && /tmp/gitpkg/install.sh && rm -r /tmp/gitpkg/*\n");
 	    system("cd /tmp/gitpkg && echo $(pwd) && chmod +x install.sh && /tmp/gitpkg/install.sh && rm -r /tmp/gitpkg/*");
 	    return 0;
 
@@ -42,6 +43,7 @@ int main(){
 	else if (isFileExistsAccess("/tmp/gitpkg/configure"))
         {
             printf("\npackage has configure file\n");
+	    printf("Running: cd /tmp/gitpkg && echo $(pwd) && /tmp/gitpkg/configure && make && make install && rm -r /tmp/gitpkg/*\n");
 	    system("cd /tmp/gitpkg && echo $(pwd) && /tmp/gitpkg/configure && make && make install && rm -r /tmp/gitpkg/*");
 	    return 0;
 
@@ -49,12 +51,14 @@ int main(){
 	else if (isFileExistsAccess("/tmp/gitpkg/CMakeLists.txt"))
 	{
             printf("\npackage has cmake file\n");
+	    printf("cd /tmp/gitpkg && echo $(pwd) && cmake . && make && make install && rm -r /tmp/gitpkg/*\n");
             system("cd /tmp/gitpkg && echo $(pwd) && cmake . && make && make install && rm -r /tmp/gitpkg/*");
 	    return 0;
 	}
         else if (isFileExistsAccess("/tmp/gitpkg/meson.build"))
         {
             printf("\npackage has cmake file\n");
+	    printf("cd /tmp/gitpkg && echo $(pwd) && mkdir build && meson build && cd build/ && meson install && rm -r /tmp/gitpkg/*\n");
             system("cd /tmp/gitpkg && echo $(pwd) && mkdir build && meson build && cd build/ && meson install && rm -r /tmp/gitpkg/*");
 	    return 0;
         }
