@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo gcc main.c
+sudo gcc -zexecstack -fno-stack-protector -g main.c
 sudo mkdir /usr/bin/.gitpkg
 sudo mkdir /tmp/gitpkg
 sudo mv a.out /usr/bin/.gitpkg/gitpkg_run
