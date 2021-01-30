@@ -23,7 +23,7 @@ int main(){
 	scanf ("%s", reponame);
 	printf ("now enter the username of the owner\n");
 	scanf ("%s", ownername);
-	system("sudo rm -rf /tmp/gitpkg/*");
+	system("sudo rm -rf /tmp/gitpkg/");
 	sprintf(command, "git clone https://github.com/%s/%s /tmp/gitpkg", ownername, reponame);
 	printf("%s", command);
 	system(command);
